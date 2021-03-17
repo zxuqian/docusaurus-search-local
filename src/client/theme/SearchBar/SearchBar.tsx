@@ -30,11 +30,9 @@ const SEARCH_PARAM_HIGHLIGHT = "_highlight";
 
 interface SearchBarProps {
   isSearchBarExpanded: boolean;
-  handleSearchBarToggle: (expanded: boolean) => void;
 }
 
 export default function SearchBar({
-  handleSearchBarToggle,
 }: SearchBarProps): ReactElement {
   const {
     siteConfig: { baseUrl },
@@ -164,12 +162,10 @@ export default function SearchBar({
   const onInputFocus = useCallback(() => {
     focusAfterIndexLoaded.current = true;
     loadIndex();
-    handleSearchBarToggle(true);
-  }, [handleSearchBarToggle, loadIndex]);
+  }, [loadIndex]);
 
   const onInputBlur = useCallback(() => {
-    handleSearchBarToggle(false);
-  }, [handleSearchBarToggle]);
+  }, []);
 
   const onInputMouseEnter = useCallback(() => {
     loadIndex();

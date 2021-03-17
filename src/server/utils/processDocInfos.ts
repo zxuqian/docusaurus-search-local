@@ -29,19 +29,12 @@ export function processDocInfos(
         // Do not index error page and search page.
         return;
       }
-      if (
-        indexBlog &&
-        blogRouteBasePath.some((basePath) => urlMatchesPrefix(route, basePath))
-      ) {
-        if (
-          blogRouteBasePath.some(
-            (basePath) =>
-              route === basePath || urlMatchesPrefix(route, `${basePath}/tags`)
-          )
-        ) {
+      if (indexBlog) {
+        // Temporarily add support for blog only mode indexing
+        if (route.startsWith(`tags`)) {
           // Do not index list of blog posts and tags filter pages
           return;
-        }
+      }
         return { route, url, type: "blog" };
       }
       if (
